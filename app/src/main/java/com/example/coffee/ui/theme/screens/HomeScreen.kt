@@ -144,7 +144,7 @@ fun HomeScreen() {
                 color = Black87,
                 fontFamily = SnigletFamily
             )
-            // First animated star
+
             Icon(
                 modifier = Modifier
                     .size(16.dp)
@@ -161,7 +161,7 @@ fun HomeScreen() {
                 .padding(top = 21.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            // Second animated star
+
             Icon(
                 modifier = Modifier
                     .size(16.dp)
@@ -207,7 +207,6 @@ fun HomeScreen() {
                 color = Black87,
                 fontFamily = SnigletFamily
             )
-            // Third animated star
             Icon(
                 modifier = Modifier
                     .size(16.dp)
@@ -255,7 +254,7 @@ fun HomeScreen() {
                 )
                 .clickable {
 
-                },
+                }.padding(horizontal = 32.dp, vertical = 16.dp),
             contentAlignment = Alignment.Center
         ) {
             Row(

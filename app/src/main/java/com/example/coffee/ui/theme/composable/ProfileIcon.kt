@@ -22,7 +22,7 @@ fun ProfileIcon(
 
     Image(
         modifier = modifier.size(48.dp),
-        painter = painterResource(id = R.drawable.profile),
+        painter = painterResource(id = R.drawable.pfp),
         contentDescription = "Profile Icon",
     )
 

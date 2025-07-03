@@ -1,6 +1,6 @@
 package com.example.coffee.ui.theme.composable
 
-import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,65 +15,73 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffee.R
+import com.example.coffee.ui.theme.Black60
 import com.example.coffee.ui.theme.UrbanistFamily
-import com.example.coffee.ui.theme.White87
 
 @Composable
-fun ContinueBottom(
-    modifier: Modifier = Modifier
-) {
+fun CoffeeSizeBottom()
+{
     Box(
         modifier = Modifier
-            .width(162.dp)
+            .width(152.dp)
             .height(56.dp)
-            .shadow(
-                elevation = 12.dp,
-                shape = RoundedCornerShape(100.dp),
-                ambientColor = Color.Black.copy(alpha = 0.24f),
-                spotColor = Color.Black.copy(alpha = 0.24f)
-            )
             .background(
-                color = Color(0xFF1F1F1F),
+                color = Color(0xFFF5F5F5),
                 shape = RoundedCornerShape(100.dp)
             )
             .clickable {
 
             }
-            .padding(horizontal = 32.dp, vertical = 16.dp),
+            .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            SmallSizeBottom()
+            SmallSizeBottom()
+            SmallSizeBottom()
 
-            Text(
-                text = "Continue",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = White87,
-                fontFamily = UrbanistFamily
-            )
-            Image(
-                modifier = Modifier.size(24.dp),
-                painter = painterResource(R.drawable.arrow_right_04),
-                contentDescription = "arrow"
-            )
 
         }
     }
-}
 
+}
+@Composable
+private fun SmallSizeBottom()
+{
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .background(
+                color = Color(0xFFF5F5F5),
+                shape = RoundedCornerShape(100.dp)
+            )
+            .clickable {
+
+            }
+            .padding(vertical = 8.dp , horizontal = 10.dp),
+        contentAlignment = Alignment.Center
+    )
+    {
+        Text(
+            text = "S",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Black60,
+            fontFamily = UrbanistFamily
+        )
+
+    }
+}
 @Composable
 @Preview(showBackground = true)
-private fun ContinueBottomPreview() {
-    ContinueBottom()
+private fun CoffeeSizeBottomPreview() {
+   CoffeeSizeBottom()
 }
