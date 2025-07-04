@@ -31,6 +31,7 @@ import com.example.coffee.ui.theme.UrbanistFamily
 import com.example.coffee.ui.theme.composable.BackBottom
 import com.example.coffee.ui.theme.composable.CoffeeAmountBottom
 import com.example.coffee.ui.theme.composable.CoffeeSizeBottom
+import com.example.coffee.ui.theme.composable.CoffeeWithSizeBox
 import com.example.coffee.ui.theme.composable.ContinueBottom
 
 @Composable
@@ -59,37 +60,8 @@ fun CoffeeDetailsScreen() {
                 fontFamily = UrbanistFamily
             )
         }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(341.dp)
+        CoffeeWithSizeBox()
 
-        )
-        {
-            Text(
-                modifier = Modifier.offset(x = 16.dp, y = 64.dp),
-                text = "200 ML",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
-                color = Black60,
-                fontFamily = UrbanistFamily
-            )
-            Box(
-                modifier = Modifier
-                    .padding(start = 32.dp, top = 49.dp)
-                    .width(199.4.dp)
-                    .height(244.dp)
-
-            ) {
-                Image(
-                    modifier = Modifier,
-                    painter = painterResource(R.drawable.empty_cup),
-                    contentDescription = "shadow image",
-                    contentScale = ContentScale.Crop
-
-                )
-            }
-        }
         CoffeeSizeBottom()
         Spacer(modifier = Modifier.height(16.dp))
         CoffeeAmountBottom()
