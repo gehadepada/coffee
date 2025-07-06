@@ -1,11 +1,10 @@
-package com.example.coffee.ui.theme.screens
+package com.example.coffee.screens
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.runtime.getValue
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,7 +20,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -35,8 +33,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.ModifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,8 +45,8 @@ import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.SnigletFamily
 import com.example.coffee.ui.theme.UrbanistFamily
 import com.example.coffee.ui.theme.White87
-import com.example.coffee.ui.theme.composable.PlusBottom
-import com.example.coffee.ui.theme.composable.ProfileIcon
+import com.example.coffee.composable.PlusBottom
+import com.example.coffee.composable.ProfileIcon
 
 @Composable
 fun HomeScreen() {
@@ -72,7 +70,7 @@ fun HomeScreen() {
             repeatMode = RepeatMode.Reverse
         ),
 
-    )
+        )
 
 
     val star2Alpha by infiniteTransition.animateFloat(
@@ -92,7 +90,7 @@ fun HomeScreen() {
             repeatMode = RepeatMode.Reverse
         ),
 
-    )
+        )
 
 
     val star3Alpha by infiniteTransition.animateFloat(
@@ -103,7 +101,7 @@ fun HomeScreen() {
             repeatMode = RepeatMode.Reverse
         ),
 
-    )
+        )
 
     val star3Scale by infiniteTransition.animateFloat(
         initialValue = 0.7f,
@@ -112,11 +110,42 @@ fun HomeScreen() {
             animation = tween(400),
             repeatMode = RepeatMode.Reverse
         ),
-        label = "star3Scale"
     )
+    val animateGostFloat by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = -30f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1350),
+            repeatMode = RepeatMode.Reverse
+
+        ),
+
+        )
+    val animateShadowFloatSize by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = 0.9f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1350),
+            repeatMode = RepeatMode.Reverse
+
+        ),
+
+        )
+    val animateShadowFloatALpha by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = 0.5f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1350),
+            repeatMode = RepeatMode.Reverse
+
+        ),
+
+        )
 
     Column(
-        modifier = Modifier.fillMaxSize().clip(shape= RoundedCornerShape(20.dp)),
+        modifier = Modifier
+            .fillMaxSize()
+            .clip(shape = RoundedCornerShape(20.dp)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -217,25 +246,38 @@ fun HomeScreen() {
                 contentDescription = "star Icon",
             )
         }
-        Spacer(modifier=Modifier.height(33.dp))
-
-        Image(
-            modifier = Modifier
-                .size(244.dp),
-            painter = painterResource(R.drawable.gost),
-            contentDescription = "gost image",
-        )
-        Box(
-            modifier = Modifier
-                .width(200.dp)
-                .height(27.65.dp)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            Spacer(modifier = Modifier.height(33.dp))
+
             Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painterResource(R.drawable.shadow),
-                contentDescription = "shadow image",
-                contentScale = ContentScale.Crop
+                modifier = Modifier
+                    .size(244.dp)
+                    .graphicsLayer(
+                        translationY = animateGostFloat
+                    ),
+                painter = painterResource(R.drawable.gost),
+                contentDescription = "gost image",
             )
+            Box(
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(27.65.dp)
+                    .graphicsLayer (
+                        scaleX=animateShadowFloatSize,
+                        scaleY=animateShadowFloatSize,
+                        alpha=animateShadowFloatALpha
+                    )
+            ) {
+                Image(
+                    modifier = Modifier.fillMaxSize(),
+                    painter = painterResource(R.drawable.shadow),
+                    contentDescription = "shadow image",
+                    contentScale = ContentScale.Crop
+                )
+            }
         }
         Spacer(modifier = Modifier.height(58.91.dp))
         Box(
@@ -254,7 +296,8 @@ fun HomeScreen() {
                 )
                 .clickable {
 
-                }.padding(horizontal = 32.dp, vertical = 16.dp),
+                }
+                .padding(horizontal = 32.dp, vertical = 16.dp),
             contentAlignment = Alignment.Center
         ) {
             Row(
@@ -276,8 +319,8 @@ fun HomeScreen() {
             }
         }
     }
-}
 
+}
 @Composable
 @Preview(
     showBackground = true,
