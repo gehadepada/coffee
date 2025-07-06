@@ -1,4 +1,4 @@
-package com.example.coffee.ui.theme.composable
+package com.example.coffee.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

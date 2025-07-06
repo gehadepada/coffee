@@ -1,4 +1,4 @@
-package com.example.coffee.ui.theme.screens
+package com.example.coffee.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,9 +33,9 @@ import com.example.coffee.ui.theme.Black70
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.Coffee
 import com.example.coffee.ui.theme.UrbanistFamily
-import com.example.coffee.ui.theme.composable.ContinueBottom
-import com.example.coffee.ui.theme.composable.PlusBottom
-import com.example.coffee.ui.theme.composable.TakeSnackBottom
+import com.example.coffee.composable.ContinueBottom
+import com.example.coffee.composable.PlusBottom
+import com.example.coffee.composable.TakeSnackBottom
 
 @Composable
 fun CoffeeReadyScreen() {

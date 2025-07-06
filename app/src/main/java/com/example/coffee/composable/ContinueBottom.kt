@@ -1,5 +1,4 @@
-package com.example.coffee.ui.theme.composable
-
+package com.example.coffee.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,12 +27,12 @@ import com.example.coffee.ui.theme.UrbanistFamily
 import com.example.coffee.ui.theme.White87
 
 @Composable
-fun TakeSnackBottom(
+fun ContinueBottom(
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = Modifier
-            .width(180.dp)
+            .width(162.dp)
             .height(56.dp)
             .shadow(
                 elevation = 12.dp,
@@ -57,7 +56,7 @@ fun TakeSnackBottom(
         ) {
 
             Text(
-                text = "Take snack",
+                text = "Continue",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = White87,
@@ -75,6 +74,6 @@ fun TakeSnackBottom(
 
 @Composable
 @Preview(showBackground = true)
-private fun TakeSnackBottomPreview() {
-    TakeSnackBottom()
+private fun ContinueBottomPreview() {
+    ContinueBottom()
 }

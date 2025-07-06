@@ -1,4 +1,4 @@
-package com.example.coffee.ui.theme.screens
+package com.example.coffee.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,11 +28,11 @@ import com.example.coffee.R
 import com.example.coffee.ui.theme.Black60
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.UrbanistFamily
-import com.example.coffee.ui.theme.composable.BackBottom
-import com.example.coffee.ui.theme.composable.CoffeeAmountBottom
-import com.example.coffee.ui.theme.composable.CoffeeSizeBottom
-import com.example.coffee.ui.theme.composable.CoffeeWithSizeBox
-import com.example.coffee.ui.theme.composable.ContinueBottom
+import com.example.coffee.composable.BackBottom
+import com.example.coffee.composable.CoffeeAmountBottom
+import com.example.coffee.composable.CoffeeSizeBottom
+import com.example.coffee.composable.CoffeeWithSizeBox
+import com.example.coffee.composable.ContinueBottom
 
 @Composable
 fun CoffeeDetailsScreen() {

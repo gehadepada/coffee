@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.coffee.ui.theme.CoffeeTheme
-import com.example.coffee.ui.theme.screens.HomeScreen
+import com.example.coffee.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

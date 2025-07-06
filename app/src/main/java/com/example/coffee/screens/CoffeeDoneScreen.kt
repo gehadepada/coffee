@@ -1,4 +1,4 @@
-package com.example.coffee.ui.theme.screens
+package com.example.coffee.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,7 @@ import com.example.coffee.ui.theme.Black60
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.Coffee
 import com.example.coffee.ui.theme.UrbanistFamily
-import com.example.coffee.ui.theme.composable.CoffeeWithSizeBox
+import com.example.coffee.composable.CoffeeWithSizeBox
 
 @Composable
 fun CoffeeDoneScreen (){
