@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.coffee.navigation.CoffeeNavGraph
 import com.example.coffee.ui.theme.CoffeeTheme
 import com.example.coffee.screens.HomeScreen
 
@@ -20,7 +22,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-              HomeScreen()
+            val navController= rememberNavController()
+            CoffeeNavGraph(navController = navController)
             }
         }
     }

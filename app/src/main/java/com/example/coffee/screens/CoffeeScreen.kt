@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.coffee.R
 import com.example.coffee.ui.theme.Black100
 import com.example.coffee.ui.theme.Black80
@@ -31,12 +34,19 @@ import com.example.coffee.ui.theme.White87
 import com.example.coffee.composable.ContinueBottom
 import com.example.coffee.composable.PlusBottom
 import com.example.coffee.composable.ProfileIcon
+import com.example.coffee.navigation.Screen
 
 @Composable
-fun CoffeeScreen() {
+fun CoffeeScreen(
+    navController: NavController
+) {
+    CoffeeScreenContent()
+}
+@Composable
+private fun CoffeeScreenContent(){
     Column(
         modifier = Modifier.fillMaxSize().clip(shape = RoundedCornerShape(20.dp)),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
         Row(
             modifier = Modifier
@@ -51,9 +61,12 @@ fun CoffeeScreen() {
             PlusBottom()
         }
         Column(
+            modifier=Modifier.padding(start=16.dp),
             horizontalAlignment = Alignment.Start
         ) {
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
+
                 text = "Good Morning",
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
@@ -67,6 +80,7 @@ fun CoffeeScreen() {
                 color = Black100,
                 fontFamily = UrbanistFamily
             )
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "What would you like to drink today?",
                 fontSize = 16.sp,
@@ -74,8 +88,9 @@ fun CoffeeScreen() {
                 color = Black80,
                 fontFamily = UrbanistFamily
             )
+        }
             Image(
-                modifier = Modifier.width(193.47.dp)
+                modifier = Modifier.width(193.47.dp).padding(top=56.dp)
                     .height(244.dp),
                 painter = painterResource(R.drawable.empty_cup),
                 contentDescription = "cup of coffe"
@@ -89,7 +104,7 @@ fun CoffeeScreen() {
             )
             ContinueBottom()
 
-        }
+
 
     }
 }
@@ -99,6 +114,6 @@ fun CoffeeScreen() {
     showSystemUi = true,
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
-private fun CoffeeScreenPreview() {
-    CoffeeScreen()
+private fun CoffeeScreenContentPreview() {
+    CoffeeScreenContent()
 }

@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.coffee.R
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.SnigletFamily
@@ -47,9 +48,21 @@ import com.example.coffee.ui.theme.UrbanistFamily
 import com.example.coffee.ui.theme.White87
 import com.example.coffee.composable.PlusBottom
 import com.example.coffee.composable.ProfileIcon
+import com.example.coffee.navigation.Screen
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavController
+) {
+    HomeScreenContent(
+        onClickNext = {navController.navigate(Screen.CoffeeScreen.route)}
+    )
+
+}
+@Composable
+fun HomeScreenContent(
+    onClickNext:()->Unit
+){
     val infiniteTransition = rememberInfiniteTransition()
 
 
@@ -295,6 +308,7 @@ fun HomeScreen() {
                     shape = RoundedCornerShape(100.dp)
                 )
                 .clickable {
+                    onClickNext()
 
                 }
                 .padding(horizontal = 32.dp, vertical = 16.dp),
@@ -328,5 +342,5 @@ fun HomeScreen() {
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreenContent(onClickNext={})
 }
