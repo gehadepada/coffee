@@ -29,8 +29,10 @@ import com.example.coffee.ui.theme.White87
 
 @Composable
 fun TakeSnackBottom(
+    onClickNext:()->Unit,
     modifier: Modifier = Modifier
 ) {
+
     Box(
         modifier = Modifier
             .width(180.dp)
@@ -46,6 +48,7 @@ fun TakeSnackBottom(
                 shape = RoundedCornerShape(100.dp)
             )
             .clickable {
+                onClickNext()
 
             }
             .padding(horizontal = 32.dp, vertical = 16.dp),
@@ -76,5 +79,5 @@ fun TakeSnackBottom(
 @Composable
 @Preview(showBackground = true)
 private fun TakeSnackBottomPreview() {
-    TakeSnackBottom()
+    //TakeSnackBottom()
 }

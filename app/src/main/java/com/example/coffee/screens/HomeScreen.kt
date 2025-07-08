@@ -56,13 +56,18 @@ fun HomeScreen(
     navController: NavController
 ) {
     HomeScreenContent(
-        onClickNext = {navController.navigate(Screen.CoffeeScreen.route)}
+        onClickNext = { navController.navigate(Screen.CoffeeScreen.route) },
+        onClickPlus = { navController.navigate(Screen.HomeScreen.route) }
+
     )
+
 
 }
 @Composable
 fun HomeScreenContent(
-    onClickNext:()->Unit
+    onClickNext:()->Unit,
+    onClickPlus:()->Unit
+
 ){
     val infiniteTransition = rememberInfiniteTransition()
 
@@ -172,7 +177,7 @@ fun HomeScreenContent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             ProfileIcon()
-            PlusBottom()
+            PlusBottom(onClickPlus)
         }
         Row(
             modifier = Modifier
@@ -343,5 +348,5 @@ fun HomeScreenContent(
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun HomeScreenPreview() {
-    HomeScreenContent(onClickNext={})
+   /// HomeScreenContent(onClickNext={})
 }

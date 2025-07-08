@@ -50,11 +50,13 @@ import kotlin.math.absoluteValue
 fun CoffeeScreen(
     navController: NavController
 ) {
-    CoffeeScreenContent(onClickNext={navController.navigate(Screen.CoffeeDetailsScreen.route)})
+    CoffeeScreenContent(onClickNext={navController.navigate(Screen.CoffeeDetailsScreen.route)},
+        onClickPlus={navController.navigate(Screen.HomeScreen.route)})
 }
 @Composable
 private fun CoffeeScreenContent(
-    onClickNext:()->Unit
+    onClickNext:()->Unit,
+    onClickPlus:()->Unit
 ){
     val CoffeeData= listOf(
         CoffeeWithName(R.drawable.espresso),
@@ -81,7 +83,7 @@ private fun CoffeeScreenContent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             ProfileIcon()
-            PlusBottom()
+            PlusBottom(onClickPlus)
         }
         Column(
             modifier=Modifier.padding(start=16.dp),
@@ -158,7 +160,7 @@ private fun CoffeeScreenContent(
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun CoffeeScreenContentPreview() {
-    CoffeeScreenContent(onClickNext = {})
+    CoffeeScreenContent(onClickNext = {}, onClickPlus = {})
 }
 @Composable
 private fun CoffeeItem(

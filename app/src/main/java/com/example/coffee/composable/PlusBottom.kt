@@ -3,6 +3,7 @@ package com.example.coffee.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,13 +20,15 @@ import com.example.coffee.R
 
 @Composable
 fun PlusBottom(
+    onClick:()->Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
+        modifier= Modifier
             .size(48.dp)
             .background(color= Color(0xFFF5F5F5),shape = RoundedCornerShape(100.dp))
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
 
     ) {
         Icon(
@@ -40,5 +43,5 @@ fun PlusBottom(
 @Composable
 @Preview()
 private fun ProfileIconPreview() {
-    PlusBottom()
+    PlusBottom(onClick={})
 }

@@ -26,15 +26,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.coffee.R
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.Coffee
 import com.example.coffee.ui.theme.UrbanistFamily
 import com.example.coffee.composable.PlusBottom
 import com.example.coffee.composable.ThankYouBottom
+import com.example.coffee.navigation.Screen
 
 @Composable
-fun SnackDetailsScreen()
+fun SnackDetailsScreen(navController: NavController)
 {
 
     Column(
@@ -53,7 +55,7 @@ fun SnackDetailsScreen()
 
 
         ) {
-            PlusBottom()
+            PlusBottom( { navController.navigate(Screen.HomeScreen.route) })
         }
         Row(
             modifier=Modifier
@@ -120,5 +122,5 @@ fun SnackDetailsScreen()
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun SnackScreenPreview() {
-    SnackScreen()
+   // SnackScreen()
 }
