@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -27,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.ModifierLocalReadScope
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -99,7 +101,7 @@ private fun CoffeeScreenContent(
                 fontFamily = UrbanistFamily
             )
             Text(
-                text = "Gehad ☀",
+                text = "Hamsa ☀",
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
                 color = Black100,
@@ -124,17 +126,21 @@ private fun CoffeeScreenContent(
         ) { page ->
             val coffee = CoffeeData[page]
             val pageOffset = (pagerState.currentPage - page) + pagerState.currentPageOffsetFraction
-
+            val yOffset = androidx.compose.ui.unit.lerp(
+                start = 30.dp,
+                stop = 0.dp,
+                fraction = 1f - pageOffset.absoluteValue.coerceIn(0f, 1f)
+            )
             val scale = lerp(
-                start = 0.6f,
+                start = 0.8f,
                 stop = 1.0f,
                 fraction = 1f - pageOffset.absoluteValue.coerceIn(0f, 1f)
             )
 
-
             CoffeeItem(
                 coffee = coffee,
                 scale = scale,
+                modifier = Modifier.offset(y = yOffset)
 
             )
         }
@@ -166,10 +172,11 @@ private fun CoffeeScreenContentPreview() {
 private fun CoffeeItem(
     coffee: CoffeeWithName,
     scale: Float = 1f,
-    alpha: Float = 1f
+    alpha: Float = 1f,
+    modifier: Modifier= Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .width(240.dp)
             .height(300.dp)
             .graphicsLayer {

@@ -1,5 +1,7 @@
 package com.example.coffee.screens
 
+import android.graphics.BlurMaskFilter
+import android.graphics.Paint
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -30,10 +32,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -284,10 +290,10 @@ fun HomeScreenContent(
                 modifier = Modifier
                     .width(200.dp)
                     .height(27.65.dp)
-                    .graphicsLayer (
-                        scaleX=animateShadowFloatSize,
-                        scaleY=animateShadowFloatSize,
-                        alpha=animateShadowFloatALpha
+                    .graphicsLayer(
+                        scaleX = animateShadowFloatSize,
+                        scaleY = animateShadowFloatSize,
+                        alpha = animateShadowFloatALpha
                     )
             ) {
                 Image(
@@ -303,39 +309,65 @@ fun HomeScreenContent(
             modifier = Modifier
                 .width(215.dp)
                 .height(56.dp)
-                .shadow(
-                    elevation = 12.dp,
-                    shape = RoundedCornerShape(100.dp),
-                    ambientColor = Color.Black.copy(alpha = 0.24f),
-                    spotColor = Color.Black.copy(alpha = 0.24f)
-                )
-                .background(
-                    color = Color(0xFF1F1F1F),
-                    shape = RoundedCornerShape(100.dp)
-                )
-                .clickable {
-                    onClickNext()
-
-                }
-                .padding(horizontal = 32.dp, vertical = 16.dp),
-            contentAlignment = Alignment.Center
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Box(
+                modifier = Modifier
+                    .width(215.dp)
+                    .height(56.dp)
+                    .offset(y = 6.dp)
+                    .drawBehind {
+                        val paint = Paint().apply {
+                            color = Color(0x3D000000).toArgb()
+                            maskFilter = BlurMaskFilter(20f, BlurMaskFilter.Blur.NORMAL)
+                        }
+
+                        drawIntoCanvas {
+                            it.nativeCanvas.drawRoundRect(
+                                0f,
+                                0f,
+                                size.width,
+                                size.height,
+                                size.width,
+                                size.height,
+                                paint
+                            )
+                        }
+                    }
+
+            )
+            Box(
+                modifier = Modifier
+                    .width(215.dp)
+                    .height(56.dp)
+
+                    .background(
+                        color = Color(0xFF1F1F1F),
+                        shape = RoundedCornerShape(100.dp)
+                    )
+                    .clickable {
+                        onClickNext()
+
+                    }
+                    .padding(horizontal = 32.dp, vertical = 16.dp),
+                contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "bring my coffee",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = White87,
-                    fontFamily = UrbanistFamily
-                )
-                Image(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(R.drawable.cup),
-                    contentDescription = "cup of coffe"
-                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "bring my coffee",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = White87,
+                        fontFamily = UrbanistFamily
+                    )
+                    Image(
+                        modifier = Modifier.size(24.dp),
+                        painter = painterResource(R.drawable.cup),
+                        contentDescription = "cup of coffe"
+                    )
+                }
             }
         }
     }

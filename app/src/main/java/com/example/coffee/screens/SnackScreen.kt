@@ -45,7 +45,6 @@ import androidx.compose.ui.util.lerp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.example.coffee.composable.CancelBottom
-import com.example.coffee.composable.PlusBottom
 import com.example.coffee.navigation.Screen
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.UrbanistFamily
@@ -122,6 +121,8 @@ fun VerticalSnackPager(navController: NavController) {
             pageOffset < 0f -> screenHeight.value * 0.10f * pageOffset
             else -> screenHeight.value * 0.5f * pageOffset
         }
+
+
         Box(
             modifier = Modifier
                 .graphicsLayer {
@@ -131,7 +132,7 @@ fun VerticalSnackPager(navController: NavController) {
                     translationX = offsetX
                     translationY = offsetY
                 }
-                .size(width = 260.dp, height = 274.dp) // fixed card size
+                .size(width = 260.dp, height = 274.dp)
                 .background(
                     color = Color(0xFFF5F5F5),
                     shape = RoundedCornerShape(32.dp)
