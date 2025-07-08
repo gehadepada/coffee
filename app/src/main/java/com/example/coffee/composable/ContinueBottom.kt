@@ -28,6 +28,7 @@ import com.example.coffee.ui.theme.White87
 
 @Composable
 fun ContinueBottom(
+    onClickNext:()->Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -45,6 +46,7 @@ fun ContinueBottom(
                 shape = RoundedCornerShape(100.dp)
             )
             .clickable {
+                onClickNext()
 
             }
             .padding(horizontal = 32.dp, vertical = 16.dp),
@@ -75,5 +77,5 @@ fun ContinueBottom(
 @Composable
 @Preview(showBackground = true)
 private fun ContinueBottomPreview() {
-    ContinueBottom()
+    ContinueBottom(onClickNext = {})
 }

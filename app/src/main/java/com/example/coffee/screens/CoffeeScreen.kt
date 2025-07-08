@@ -1,8 +1,11 @@
 package com.example.coffee.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.ui.util.lerp
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,12 +15,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,15 +44,29 @@ import com.example.coffee.composable.ContinueBottom
 import com.example.coffee.composable.PlusBottom
 import com.example.coffee.composable.ProfileIcon
 import com.example.coffee.navigation.Screen
+import kotlin.math.absoluteValue
 
 @Composable
 fun CoffeeScreen(
     navController: NavController
 ) {
-    CoffeeScreenContent()
+    CoffeeScreenContent(onClickNext={navController.navigate(Screen.CoffeeDetailsScreen.route)})
 }
 @Composable
-private fun CoffeeScreenContent(){
+private fun CoffeeScreenContent(
+    onClickNext:()->Unit
+){
+    val CoffeeData= listOf(
+        CoffeeWithName(R.drawable.espresso),
+        CoffeeWithName(R.drawable.macchiato),
+        CoffeeWithName(R.drawable.latte),
+        CoffeeWithName(R.drawable.black),
+
+    )
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        pageCount = { CoffeeData.size }
+    )
     Column(
         modifier = Modifier.fillMaxSize().clip(shape = RoundedCornerShape(20.dp)),
         horizontalAlignment = Alignment.Start
@@ -89,20 +112,40 @@ private fun CoffeeScreenContent(){
                 fontFamily = UrbanistFamily
             )
         }
-            Image(
-                modifier = Modifier.width(193.47.dp).padding(top=56.dp)
-                    .height(244.dp),
-                painter = painterResource(R.drawable.empty_cup),
-                contentDescription = "cup of coffe"
+
+       Spacer(modifier=Modifier.height(56.dp))
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(horizontal = 95.dp),
+            pageSpacing = 16.dp
+        ) { page ->
+            val coffee = CoffeeData[page]
+            val pageOffset = (pagerState.currentPage - page) + pagerState.currentPageOffsetFraction
+
+            val scale = lerp(
+                start = 0.6f,
+                stop = 1.0f,
+                fraction = 1f - pageOffset.absoluteValue.coerceIn(0f, 1f)
             )
-            Text(
-                text = "black",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = Black80,
-                fontFamily = UrbanistFamily
+
+
+            CoffeeItem(
+                coffee = coffee,
+                scale = scale,
+
             )
-            ContinueBottom()
+        }
+
+
+        Box(
+            modifier=Modifier.fillMaxWidth().padding(top=111.dp,start=99.dp)
+
+        )
+        {
+
+            ContinueBottom(onClickNext)
+        }
 
 
 
@@ -115,5 +158,33 @@ private fun CoffeeScreenContent(){
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun CoffeeScreenContentPreview() {
-    CoffeeScreenContent()
+    CoffeeScreenContent(onClickNext = {})
+}
+@Composable
+private fun CoffeeItem(
+    coffee: CoffeeWithName,
+    scale: Float = 1f,
+    alpha: Float = 1f
+) {
+    Box(
+        modifier = Modifier
+            .width(240.dp)
+            .height(300.dp)
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+                this.alpha = alpha
+            },
+                contentAlignment = Alignment.BottomCenter
+    ) {
+        Image(
+            modifier = Modifier
+                .height(300.dp)
+                .fillMaxWidth(),
+            painter = painterResource(id = coffee.imageRes),
+            contentDescription = "cup of ",
+            //contentScale = ContentScale.Fit
+        )
+
+    }
 }

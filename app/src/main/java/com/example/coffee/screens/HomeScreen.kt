@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffee.R
+import com.example.coffee.composable.ContinueBottom
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.SnigletFamily
 import com.example.coffee.ui.theme.UrbanistFamily

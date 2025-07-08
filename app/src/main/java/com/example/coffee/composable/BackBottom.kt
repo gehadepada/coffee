@@ -1,6 +1,7 @@
 package com.example.coffee.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
@@ -19,12 +20,15 @@ import androidx.compose.ui.unit.dp
 import com.example.coffee.R
 
 @Composable
-fun BackBottom()
+fun BackBottom(
+    onClickBack:()->Unit
+)
 {
     Box(
         modifier= Modifier
             .size(48.dp)
-            .background(color= Color(0xFFF5F5F5) , shape = RoundedCornerShape(100.dp)),
+            .background(color= Color(0xFFF5F5F5) , shape = RoundedCornerShape(100.dp))
+            .clickable { onClickBack() },
             contentAlignment = Alignment.Center
     )
     {
@@ -41,5 +45,5 @@ fun BackBottom()
 @Composable
 @Preview(showBackground = true)
 private fun BackBottomPreview() {
-    BackBottom()
+    BackBottom(onClickBack = {})
 }
