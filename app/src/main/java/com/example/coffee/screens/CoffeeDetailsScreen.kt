@@ -57,8 +57,8 @@ fun CoffeeDetailsScreen(
     var isDropping by remember { mutableStateOf(false) }
 
     val dropY by animateDpAsState(
-        targetValue = if (isDropping) 80.dp else -150.dp,
-        animationSpec = tween(durationMillis = 1000),
+        targetValue = if (isDropping) 105.dp else -150.dp,
+        animationSpec = tween(durationMillis = 400),
         finishedListener = {
             isDropping = false
         }
@@ -66,14 +66,14 @@ fun CoffeeDetailsScreen(
 
 
     val dropAlpha by animateFloatAsState(
-        targetValue = if (isDropping)0.3f else 1.0f,
-        animationSpec = tween(durationMillis = 1000)
+        targetValue = if (isDropping)0.7f else 1.0f,
+        animationSpec = tween(durationMillis = 600)
     )
 
 
     val dropSize by animateDpAsState(
-        targetValue = if (isDropping) 120.dp else 160.dp,
-        animationSpec = tween(durationMillis = 1000)
+        targetValue = if (isDropping) 70.dp else 160.dp,
+        animationSpec = tween(durationMillis = 600)
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
