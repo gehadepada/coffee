@@ -33,7 +33,7 @@ fun CancelBottom(
     ) {
         Icon(
             modifier = Modifier.size(24.dp),
-            painter = painterResource(id = R.drawable.iconn),
+            painter = painterResource(id = R.drawable.cancel),
             contentDescription = "add Icon",
         )
     }
