@@ -57,8 +57,8 @@ fun CoffeeDetailsScreen(
     var isDropping by remember { mutableStateOf(false) }
 
     val dropY by animateDpAsState(
-        targetValue = if (isDropping) 105.dp else -150.dp,
-        animationSpec = tween(durationMillis = 400),
+        targetValue = if (isDropping) 98.dp else -150.dp,
+        animationSpec = tween(durationMillis = 600),
         finishedListener = {
             isDropping = false
         }
