@@ -11,6 +11,8 @@ sealed class Screen(val route :String){
     }
     object CoffeeReadyScreen:Screen("coffeeReadyScreen")
     object SnakeScreen:Screen("snakeScreen")
-    object SnakeDetailsScreen:Screen("snakeDetailsScreen")
+    object SnakeDetailsScreen : Screen("snakeDetailsScreen/{imageRes}") {
+        fun withImageRes(imageRes: Int) = "snakeDetailsScreen/$imageRes"
+    }
 
 }

@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffee.R
+import com.example.coffee.composable.CancelBottom
 import com.example.coffee.ui.theme.Black70
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.Coffee
@@ -104,7 +105,7 @@ fun CoffeeReadyScreen(navController: NavController) {
                     .padding(start = 16.dp),
                 contentAlignment = Alignment.TopStart
             ) {
-                PlusBottom({navController.navigate(Screen.HomeScreen.route)})
+                CancelBottom({navController.navigate(Screen.HomeScreen.route)})
             }
 
             Box(

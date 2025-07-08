@@ -6,9 +6,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -28,15 +30,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.coffee.R
+import com.example.coffee.composable.CancelBottom
 import com.example.coffee.ui.theme.Black87
 import com.example.coffee.ui.theme.Coffee
 import com.example.coffee.ui.theme.UrbanistFamily
 import com.example.coffee.composable.PlusBottom
 import com.example.coffee.composable.ThankYouBottom
 import com.example.coffee.navigation.Screen
+import com.example.coffee.ui.theme.Black80
+import com.example.coffee.ui.theme.SnigletFamily
 
 @Composable
-fun SnackDetailsScreen(navController: NavController)
+fun SnackDetailsScreen(navController: NavController, imageRes: Int)
 {
 
     Column(
@@ -55,72 +60,82 @@ fun SnackDetailsScreen(navController: NavController)
 
 
         ) {
-            PlusBottom( { navController.navigate(Screen.HomeScreen.route) })
+            CancelBottom({ navController.navigate(Screen.HomeScreen.route) })
         }
         Row(
-            modifier=Modifier
-                .fillMaxSize()
-                .height(32.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+
         )
         {
             Icon(
                 modifier = Modifier
-                    .size(32.dp),
+                    .size(32.dp)
+                    .padding(start=8.dp)
+                    .offset(y=14.dp),
                 painter = painterResource(id = R.drawable.coffee_beans),
                 contentDescription = "star Icon",
-                tint= Coffee
+                tint = Coffee
             )
             Text(
-                modifier = Modifier.padding(top = 24.dp, start = 16.dp),
-                text = "Take your snack",
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold,
-                color = Black87,
-                fontFamily = UrbanistFamily
+                modifier = Modifier.padding(top = 24.dp, start = 6.dp),
+                text = "More Espresso, Less Depresso",
+                color = Coffee,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily =SnigletFamily
             )
             Icon(
                 modifier = Modifier
-                    .size(32.dp),
-                painter = painterResource(id = R.drawable.co),
+                    .size(32.dp)
+                    .padding(start=6.dp )
+                    .offset(y=14.dp),
+                painter = painterResource(id = R.drawable.coffee_beans),
                 contentDescription = "star Icon",
-                tint= Coffee
+                tint = Coffee
             )
         }
+
         Box(
             modifier = Modifier
-                .width(300.dp)
+                .fillMaxWidth()
                 .height(310.dp)
-              //  .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(32.dp))
+                .padding(start=30.dp)
+            //  .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(32.dp))
         ) {
             Image(
                 modifier = Modifier
                     .padding(top = 39.dp)
-                    .width(245.dp)
-                    .height(300.dp),
-                painter = painterResource(R.drawable.cookies),
-                contentDescription = "cup of coffe"
+                    .fillMaxWidth()
+                    .height(310.dp),
+                painter = painterResource(id = imageRes),
+                contentDescription = "selected snack"
             )
         }
-        Text(
-            modifier = Modifier.padding(top = 24.dp, start = 16.dp),
-            text = "Bon appétit",
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-            color = Black87,
-            fontFamily = UrbanistFamily
-        )
-        ThankYouBottom()
-
+        Row() {
+            Text(
+                modifier = Modifier.padding(top = 24.dp, start = 125.dp),
+                text = "Bon appétit",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
+                color = Black80,
+                fontFamily = UrbanistFamily
+            )
+            Image(
+                modifier = Modifier
+                    .size(24.dp)
+                    .offset(y=20.dp)
+                    .padding(start=8.dp),
+                painter = painterResource(id =R.drawable.magic_wand),
+                contentDescription = "selected snack"
+            )
+        }
+        Spacer(modifier= Modifier.height(162.dp))
+        Box(modifier=Modifier.padding(start=84.dp)) {
+            ThankYouBottom({navController.navigate(Screen.HomeScreen.route)})
+        }
 
     }
-}
+    }
 
-@Composable
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    device = "spec:width=360dp,height=800dp,dpi=420"
-)
-private fun SnackScreenPreview() {
-   // SnackScreen()
-}
+

@@ -51,7 +51,7 @@ fun CoffeeScreen(
     navController: NavController
 ) {
     CoffeeScreenContent(onClickNext={navController.navigate(Screen.CoffeeDetailsScreen.route)},
-        onClickPlus={navController.navigate(Screen.HomeScreen.route)})
+        onClickPlus={navController.navigate(Screen.CoffeeScreen.route)})
 }
 @Composable
 private fun CoffeeScreenContent(

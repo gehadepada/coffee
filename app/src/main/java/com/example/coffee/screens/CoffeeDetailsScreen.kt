@@ -126,9 +126,9 @@ fun CoffeeDetailsScreen(
                     .height(12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                TextSize()
-                TextSize()
-                TextSize()
+                TextSize("Low")
+                TextSize("Medium")
+                TextSize("High")
             }
 
             Spacer(modifier = Modifier.height(92.dp))
@@ -154,10 +154,10 @@ fun CoffeeDetailsScreen(
 }
 
 @Composable
-private fun TextSize() {
+private fun TextSize(text :String) {
     Text(
         modifier = Modifier,
-        text = "Low",
+        text = text,
         fontSize = 10.sp,
         fontWeight = FontWeight.Medium,
         color = Black60,

@@ -29,6 +29,7 @@ import com.example.coffee.ui.theme.White87
 
 @Composable
 fun ThankYouBottom(
+    onClick:()->Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -46,7 +47,7 @@ fun ThankYouBottom(
                 shape = RoundedCornerShape(100.dp)
             )
             .clickable {
-
+            onClick()
             }
             .padding(horizontal = 32.dp, vertical = 16.dp),
         contentAlignment = Alignment.Center
@@ -76,5 +77,5 @@ fun ThankYouBottom(
 @Composable
 @Preview(showBackground = true)
 private fun ThankYouBottomPreview() {
-    ThankYouBottom()
+    //ThankYouBottom()
 }
