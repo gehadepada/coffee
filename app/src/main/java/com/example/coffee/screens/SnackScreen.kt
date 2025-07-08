@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -66,8 +67,8 @@ fun CardSnack(
     ) {
         Box(
             modifier = Modifier
-                .width(195.31.dp)
-                .height(205.5.dp)
+                .width(260.dp)
+                .height(280.dp)
                 .clip(
                     androidx.compose.foundation.shape.RoundedCornerShape(
                         topEnd = 32.dp,
@@ -116,7 +117,9 @@ fun VerticalSnackPager(navController: NavController) {
         R.drawable.cookies,
         R.drawable.croissant,
         R.drawable.pancake,
-        R.drawable.chocolate
+        R.drawable.chocolate,
+        R.drawable.cinnamon_roll,
+        R.drawable.pancake
 
     )
     val pagerState = rememberPagerState(initialPage = 1, pageCount = { images.size })
@@ -124,17 +127,15 @@ fun VerticalSnackPager(navController: NavController) {
     val itemWidth = 260.38.dp
     val itemHeight = 274.dp
     val contentPadding = (screenWidth - itemWidth) / 2
-
     VerticalPager(
         state = pagerState,
-        pageSize = PageSize.Fixed(itemWidth),
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(
-            horizontal = contentPadding,
-            vertical = 100.dp
+        pageSize = PageSize.Fixed(itemHeight),
+        contentPadding = PaddingValues(
+            vertical = contentPadding
         ),
         modifier = Modifier
-            .height(450.dp)
-            .zIndex(1f)
+            .height(700.dp)
+
     ) { index ->
         val pageOffset = (pagerState.currentPage - index) + pagerState.currentPageOffsetFraction
         val absOffset = abs(pageOffset)
@@ -150,6 +151,7 @@ fun VerticalSnackPager(navController: NavController) {
             rotationZ = rotationZ,
             offsetY = offsetY,
             modifier = Modifier
+                .padding(horizontal = 24.dp)
                 .clickable {
 
                     navController.navigate(Screen.SnakeDetailsScreen.withImageRes(images[index]))
