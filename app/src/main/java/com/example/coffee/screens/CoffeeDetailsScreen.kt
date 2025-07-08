@@ -50,13 +50,9 @@ import com.example.coffee.ui.theme.UrbanistFamily
 fun CoffeeDetailsScreen(
     navController: NavController
 ) {
-    CoffeeDetailsScreenContent(onClickNext={navController.navigate(Screen.CoffeeDoneScreen.route)},
-        onClickBack={navController.navigateUp()})
-}
-
-@Composable
-private fun CoffeeDetailsScreenContent(onClickNext: () ->Unit,onClickBack:()->Unit) {
     var selectedSize by remember { mutableStateOf(CoffeeSize.MEDIUM) }
+    val onClickNext={navController.navigate(Screen.CoffeeDoneScreen.withSize(selectedSize))}
+    //val onClickBack:()->Unit
     var selectedAmount by remember{ mutableStateOf(0) }
     var isDropping by remember { mutableStateOf(false) }
 
@@ -96,7 +92,7 @@ private fun CoffeeDetailsScreenContent(onClickNext: () ->Unit,onClickBack:()->Un
                     .height(48.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                BackBottom(onClickBack)
+                BackBottom({navController.navigateUp()})
                 Text(
                     modifier = Modifier.padding(top = 9.5.dp),
                     text = "Macchiato",
@@ -176,5 +172,5 @@ private fun TextSize() {
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun CoffeeDetailsScreenContentPreview() {
-    CoffeeDetailsScreenContent(onClickNext={}, onClickBack = {})
+   // CoffeeDetailsScreenContent(onClickNext={}, onClickBack = {})
 }

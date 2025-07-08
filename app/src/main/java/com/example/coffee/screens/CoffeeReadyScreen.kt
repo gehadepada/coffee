@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.coffee.R
 import com.example.coffee.ui.theme.Black70
 import com.example.coffee.ui.theme.Black87
@@ -38,7 +39,7 @@ import com.example.coffee.composable.PlusBottom
 import com.example.coffee.composable.TakeSnackBottom
 
 @Composable
-fun CoffeeReadyScreen() {
+fun CoffeeReadyScreen(navController:NavController) {
 
     Column(
         modifier = Modifier
@@ -133,5 +134,5 @@ fun CoffeeReadyScreen() {
     device = "spec:width=360dp,height=800dp,dpi=420"
 )
 private fun CoffeeReadyScreenPreview() {
-    CoffeeReadyScreen()
+    //CoffeeReadyScreen()
 }
