@@ -100,7 +100,7 @@ fun SnackDetailsScreen(navController: NavController, imageRes: Int)
             modifier = Modifier
                 .fillMaxWidth()
                 .height(310.dp)
-                .padding(start=20.dp)
+                .padding(start=10.dp)
             //  .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(32.dp))
         ) {
             Image(
